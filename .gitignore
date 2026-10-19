@@ -111,3 +111,8 @@ activemq-data/
 *.sage.py
 cython_debug/
 .abstra/
+# Older model not used by the application
+model_upgrade/models/threatmeter_email_model_v1.joblib
+
+# Evaluation reports - publish after consistent model evaluation
+model_upgrade/reports/
