@@ -24,6 +24,19 @@ The project began as part of **CyberCup 6.0** and is being developed further as 
 - **Mobile Application:** Exploring Android and iOS access to the detection engines.
 - **Improved Evaluation:** Testing on broader, unseen datasets and systematically measuring model performance.
 
+## 👥 Team & Contributions
+
+ThreatMeter AI was developed collaboratively for **CyberCup 6.0**, with each team member contributing to a different part of the project.
+
+- **Piyush — Integration & Email Detection:** Led the integration of project components, adapting and modifying existing team code across the frontend and machine-learning modules. Also developed the email phishing detection model.
+- **Tushar — SMS Detection:** Developed the machine-learning model for detecting spam and suspicious SMS messages.
+- **Ayush — URL Detection:** Developed the URL detection model to identify potentially malicious or suspicious links.
+- **Shubham — Frontend Development:** Developed the frontend interface and user-facing experience for ThreatMeter AI.
+
+### Teamwork & Collaboration
+
+The project involved combining independently developed components, resolving integration issues, debugging model behavior, and working toward a unified application. Our collaborative effort established the foundation for continued development, model evaluation, and future deployment.
+
 ## Technology Stack
 
 | Technology | Purpose |
