@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ThreatMeter — Measure the risk. Stay one step ahead.</title>
+  <meta name="description" content="A CyberCup 6.0 educational prototype for assessing messages for common phishing indicators. ML-assisted phishing message analysis.">
+  <meta property="og:title" content="ThreatMeter — Stay Ahead of Every Threat">
+  <meta property="og:description" content="Explore common phishing indicators with the CyberCup 6.0 educational message analyzer.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- Reusable inline SVG symbols; no external images or icon libraries. -->
+  <svg class="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2 21 6v6c0 5-6 9-9 10-3-1-9-5-9-10V6Z"/><path d="m8 12 3 3 5-6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-scan" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m8 0h5v-5M3 12h18"/><path d="M9 8h6M9 16h6"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="m13 2-9 12h7l-1 8 10-13h-7Z"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7"/></symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24"><path d="M4 11h16v10H4zM3 7h18v4H3zM12 7v14"/><path d="M12 7C5 7 6 1 9 3l3 4c7 0 6-6 3-4Z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 3v18h17M8 16v-4m5 4V7m5 9v-6"/></symbol>
+    <symbol id="i-tip" viewBox="0 0 24 24"><path d="M9 18h6m-5 3h4M8 14a6 6 0 1 1 8 0l-1 2H9Z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v.1"/></symbol>
+    <symbol id="i-warning" viewBox="0 0 24 24"><path d="m12 3 10 18H2Z"/><path d="M12 9v5m0 3v.1"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 7-5 5 5 5m8-10 5 5-5 5M14 4l-4 16"/></symbol>
+  </defs></svg>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="#home" aria-label="ThreatMeter home"><svg aria-hidden="true"><use href="#i-shield"/></svg><span>Threat<span class="ai">Meter</span></span></a>
+      <nav class="nav-links" id="navigation" aria-label="Main navigation">
+        <a href="#home" class="active">Home</a><a href="#analyze">Analyze Message</a><a href="#how-it-works">How It Works</a><a href="#about">About</a>
+      </nav>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false" title="Switch to light mode">
+        <svg aria-hidden="true"><use id="theme-toggle-icon" href="#i-scan"/></svg>
+        <span id="theme-toggle-label">Light mode</span>
+      </button>
+      <span class="security-badge" title="Demo ready. This is not real-time security monitoring."><span class="status-dot"></span>Security Active</span>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="navigation"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>
+    </div>
+  </header>
+  <main>
+    <section class="section analyzer-section" id="analyze" aria-labelledby="analyzer-title">
+      <div class="container">
+        <div class="section-heading"><span class="eyebrow">Pause. Inspect. Protect.</span><h2 id="analyzer-title">Message Threat Analyzer</h2><p>Analyze SMS messages and emails. URL and image scanning are coming soon.</p></div>
+        <form class="analyzer-card" id="analyzer-form" novalidate>
+          <div class="panel-header"><span class="panel-title"><svg aria-hidden="true"><use href="#i-scan"/></svg>Message workspace</span><span class="demo-badge">ML Model Analysis</span></div>
+          <div class="analyzer-body">
+            
+<label class="input-label">What do you want to analyze?</label>
+
+<div class="analysis-type-buttons" role="group"
+     aria-label="Choose analysis type">
+  <button type="button"
+          class="analysis-type-btn active"
+          data-analysis-type="sms"
+          aria-pressed="true">
+    <svg aria-hidden="true"><use href="#i-mail"/></svg>
+    <span>SMS</span>
+    <small>Text messages</small>
+  </button>
+
+  <button type="button"
+          class="analysis-type-btn"
+          data-analysis-type="email"
+          aria-pressed="false">
+    <svg aria-hidden="true"><use href="#i-mail"/></svg>
+    <span>Email</span>
+    <small>Email threats</small>
+  </button>
+
+  <button type="button"
+          class="analysis-type-btn coming-soon"
+          data-analysis-type="url"
+          aria-pressed="false"
+          aria-disabled="true"
+          disabled
+          title="URL scanning is coming soon">
+    <svg aria-hidden="true"><use href="#i-shield"/></svg>
+    <span>URL</span>
+    <small>Coming soon</small>
+  </button>
+
+  <button type="button"
+          class="analysis-type-btn coming-soon"
+          data-analysis-type="image"
+          aria-pressed="false"
+          aria-disabled="true"
+          disabled
+          title="Image scanning is coming soon">
+    <svg aria-hidden="true"><use href="#i-info"/></svg>
+    <span>Image</span>
+    <small>Coming soon</small>
+  </button>
+</div>
+
+<label class="input-label" for="message">SMS message to analyze</label>
+<div class="textarea-wrap">
+<textarea id="message" placeholder="Paste your suspicious SMS or text message here..." aria-describedby="character-count input-error" spellcheck="false"></textarea><div class="scan-line" id="scan-line" hidden></div></div>
+            <div class="input-meta"><span><svg aria-hidden="true"><use href="#i-lock"/></svg>Sent to your local analysis backend for prediction.</span><span id="character-count" aria-live="off">0 characters</span></div>
+            <p class="error-message" id="input-error" role="alert" hidden></p>
+            <div class="examples"><span>Try an example:</span><button type="button" class="example-btn" data-example="prize"><svg aria-hidden="true"><use href="#i-gift"/></svg>Prize claim</button><button type="button" class="example-btn" data-example="account"><svg aria-hidden="true"><use href="#i-shield"/></svg>Account verification</button><button type="button" class="example-btn" data-example="work"><svg aria-hidden="true"><use href="#i-mail"/></svg>Work message</button></div>
+            <div class="analyzer-actions"><button type="button" class="btn clear-btn" id="clear"><svg aria-hidden="true"><use href="#i-trash"/></svg>Clear</button><button class="btn btn-primary scan-btn" type="submit" id="analyze-button"><svg aria-hidden="true"><use href="#i-scan"/></svg><span>Analyze Message</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></button></div>
+          </div>
+        </form>
+        <p class="privacy-note"><svg aria-hidden="true"><use href="#i-info"/></svg>Educational demo. Findings are indicators, not a security verdict.</p>
+        <p id="scan-status" class="privacy-note" role="status" hidden>Sending message to the analysis service…</p>
+        <section class="result-card" id="results" aria-labelledby="result-title" tabindex="-1" hidden>
+          <div class="result-top"><span class="result-icon"><svg aria-hidden="true"><use id="result-icon-use" href="#i-warning"/></svg></span><div><small>ML Model Analysis</small><h3 id="result-title"></h3></div></div>
+          <p class="result-summary" id="result-summary"></p>
+          
+<div class="threat-score-panel">
+  <div class="threat-score-info">
+    <span class="threat-score-label">THREAT SCORE</span>
+    <div class="threat-score-number">
+      <span id="threat-score-value">0</span><span class="threat-score-percent">%</span>
+    </div>
+    <span id="threat-score-description">Estimated threat probability</span>
+  </div>
+
+  <div class="threat-meter" id="threat-meter"
+       role="img" aria-label="Threat score: 0 percent">
+    <svg viewBox="0 0 120 120" aria-hidden="true">
+      <circle class="meter-track" cx="60" cy="60" r="48"></circle>
+      <circle class="meter-progress" id="meter-progress"
+              cx="60" cy="60" r="48"></circle>
+    </svg>
+    <div class="meter-center">
+      <span id="meter-center-value">0%</span>
+      <span class="meter-center-label">RISK</span>
+    </div>
+  </div>
+</div>
+
+          <div class="result-columns"><div><h4 id="indicator-heading">Risk Indicators</h4><ul id="indicators"></ul></div><div><h4>Recommended next steps</h4><ul id="recommendations"></ul></div></div>
+          <button type="button" class="btn" id="analyze-another"><svg aria-hidden="true"><use href="#i-scan"/></svg>Analyze Another Message<svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        </section>
+      </div>
+    </section>
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <span class="eyebrow hero-label"><svg aria-hidden="true"><use href="#i-bolt"/></svg> A smarter approach to digital safety</span>
+          <h1 id="hero-title">Stay Ahead of<br>Every <span>Threat.</span></h1>
+          <p>Analyze suspicious messages, identify potential phishing attempts, and make safer digital decisions with ThreatMeter.</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="#analyze"><svg aria-hidden="true"><use href="#i-scan"/></svg>Analyze a Message<svg aria-hidden="true"><use href="#i-arrow"/></svg></a><a class="btn" href="#features">Explore Features<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+          <div class="hero-notes"><span><svg aria-hidden="true"><use href="#i-check"/></svg>No sign-up required</span><span><svg aria-hidden="true"><use href="#i-check"/></svg>Private by design</span><span><svg aria-hidden="true"><use href="#i-check"/></svg>Built for awareness</span></div>
+        </div>
+        <div class="shield-scene" role="img" aria-label="Glowing cybersecurity shield with orbiting scan rings">
+          <div class="ring ring-outer"></div><div class="ring ring-main"></div><div class="ring ring-inner"></div>
+          <div class="shield-glow"><div class="shield"><svg aria-hidden="true"><use href="#i-check"/></svg></div></div>
+          <span class="particle p1"></span><span class="particle p2"></span><span class="particle p3"></span>
+          <span class="scene-label label-one"><svg aria-hidden="true"><use href="#i-scan"/></svg>Phishing indicators</span>
+          <span class="scene-label label-two"><svg aria-hidden="true"><use href="#i-lock"/></svg>Privacy first</span>
+          <span class="scene-caption">THREATMETER / AWARENESS IS YOUR FIRST DEFENSE</span>
+        </div>
+      </div>
+      <div class="trust-band"><div class="container trust-inner"><span><svg aria-hidden="true"><use href="#i-shield"/></svg>CyberCup 6.0 Hackathon</span><span><svg aria-hidden="true"><use href="#i-code"/></svg>Transparent, rule-based analysis</span><span><svg aria-hidden="true"><use href="#i-lock"/></svg>Your messages stay in your browser</span></div></div>
+    </section>
+    <section class="section features-section" id="features" aria-labelledby="features-title"><div class="container">
+      <div class="section-heading"><span class="eyebrow">Your digital defense toolkit</span><h2 id="features-title">A little awareness. A stronger defense.</h2><p>Understand the warning signs before you take the next step.</p></div>
+      <div class="feature-grid">
+        <article class="feature-card"><div class="feature-icon"><svg aria-hidden="true"><use href="#i-shield"/></svg></div><h3>Phishing Indicator Detection</h3><p>Spot common red flags like urgent requests, unexpected prize claims, and attempts to collect sensitive information.</p><span class="feature-foot"><svg aria-hidden="true"><use href="#i-check"/></svg>Know what to look for</span></article>
+        <article class="feature-card"><div class="feature-icon"><svg aria-hidden="true"><use href="#i-chart"/></svg></div><h3>Message Risk Analysis</h3><p>Get a clear, explainable assessment based on the patterns found in your message. No black boxes. No invented scores.</p><span class="feature-foot"><svg aria-hidden="true"><use href="#i-check"/></svg>Understand the signals</span></article>
+        <article class="feature-card"><div class="feature-icon"><svg aria-hidden="true"><use href="#i-tip"/></svg></div><h3>Actionable Safety Tips</h3><p>Turn findings into safer decisions with practical recommendations for protecting your accounts and personal data.</p><span class="feature-foot"><svg aria-hidden="true"><use href="#i-check"/></svg>Take the safer next step</span></article>
+      </div>
+    </div></section>
+    <section class="section how-section" id="how-it-works" aria-labelledby="how-title"><div class="container">
+      <div class="section-heading"><span class="eyebrow">Simple by design</span><h2 id="how-title">Three steps to a more informed decision.</h2><p>Less uncertainty. More understanding.</p></div>
+      <div class="steps"><article class="step"><div class="step-number">01</div><h3>Paste your message</h3><p>Add a suspicious email, SMS, or text to the message analyzer.</p></article><article class="step"><div class="step-number">02</div><h3>Scan for indicators</h3><p>The ML model evaluates the message and returns a prediction.</p></article><article class="step"><div class="step-number">03</div><h3>Make a safer decision</h3><p>Review the findings and practical safety recommendations before acting.</p></article></div>
+    </div></section>
+    <section class="section" id="about" aria-labelledby="about-title"><div class="container about-inner"><div><span class="eyebrow">Built with a purpose</span><h2 id="about-title">Better awareness.<br>Safer digital habits.</h2><span class="demo-badge">CYBERCUP 6.0 / HACKATHON PROTOTYPE</span></div><div class="about-copy"><p>ThreatMeter is a CyberCup 6.0 hackathon prototype designed to demonstrate how suspicious messages can be assessed for common phishing indicators.</p><p>ThreatMeter sends submitted messages to its backend for analysis by a machine-learning phishing classifier. Results are predictions, not guarantees, and depend on the model and its training data.</p><div class="disclaimer"><svg aria-hidden="true"><use href="#i-info"/></svg><span><strong>Awareness tool, not a guarantee.</strong> This demo is educational and cannot guarantee that a message is safe or malicious. Always verify unexpected requests through a trusted, independent channel.</span></div></div></div></section>
+  </main>
+  <footer><div class="container"><div class="footer-top"><div><a class="brand" href="#home"><svg aria-hidden="true"><use href="#i-shield"/></svg><span>Threat<span class="ai">Meter</span></span></a><p>Measure the risk. Stay one step ahead.</p></div><nav class="footer-links" aria-label="Footer navigation"><a href="#home">Home</a><a href="#analyze">Analyze</a><a href="#how-it-works">How It Works</a><a href="#about">About</a></nav></div><div class="footer-bottom"><span>CyberCup 6.0 Hackathon Project</span><span>Built for awareness. Designed for safer decisions.</span></div></div></footer>
+</body>
+</html>
