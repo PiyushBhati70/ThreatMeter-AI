@@ -1,31 +1,113 @@
-
-# Python environments
+# Python virtual environments
 .venv/
 **/.venv/
 venv/
 env/
+ENV/
+env.bak/
+venv.bak/
 
-# Python cache
+# Python cache and compiled files
 __pycache__/
 **/__pycache__/
 *.py[cod]
+*$py.class
+*.so
 
-# Secrets
+# Secrets and local configuration
 .env
 .env.*
 !.env.example
+.envrc
+.pypirc
+.streamlit/secrets.toml
 
-# Editor and operating system files
+# Editors and operating systems
 .vscode/
 .DS_Store
 Thumbs.db
+.spyderproject
+.spyproject
+.ropeproject
 
 # Logs and temporary files
 *.log
 *.tmp
+tempCodeRunnerFile.py
+pip-log.txt
+pip-delete-this-directory.txt
 
 # Datasets - keep local until reviewed
 model_upgrade/data/
 email_false_negatives.csv
+model_upgrade/reports/misclassified_examples.csv
 
-# Generated temporary artifacts
+# Generated artifacts and build outputs
+build/
+dist/
+downloads/
+eggs/
+.eggs/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+*.manifest
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache/
+.pytest_cache/
+.hypothesis/
+nosetests.xml
+coverage.xml
+*.cover
+*.lcov
+cover/
+
+# Documentation build output
+docs/_build/
+site/
+
+# Python tooling
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+.ruff_cache/
+.pybuilder/
+.ipynb_checkpoints/
+__pypackages__/
+.pytest_cache/
+
+# Packaging and environment managers
+.pdm-python
+.pdm-build/
+.pixi/
+Pipfile.lock
+poetry.lock
+poetry.toml
+uv.lock
+
+# Framework and service local files
+local_settings.py
+instance/
+.webassets-cache/
+.scrapy/
+celerybeat-schedule*
+celerybeat.pid
+*.rdb
+*.aof
+*.pid
+mnesia/
+rabbitmq/
+rabbitmq-data/
+activemq-data/
+
+# Miscellaneous generated files
+*.sage.py
+cython_debug/
+.abstra/
